@@ -467,6 +467,11 @@ func (cli *DockerCli) CmdInfo(args ...string) error {
 		fmt.Fprintf(cli.out, "Fds: %d\n", out.NFd)
 		fmt.Fprintf(cli.out, "Goroutines: %d\n", out.NGoroutines)
 	}
+	if cli.authConfig != nil {
+		fmt.Fprintf(cli.out, "Username: %v\n", cli.authConfig.Username)
+		// XXX Should we print registry address even if the user was not logged in?
+		fmt.Fprintf(cli.out, "Registry: %v\n", auth.IndexServerAddress())
+	}
 	if !out.MemoryLimit {
 		fmt.Fprintf(cli.err, "WARNING: No memory limit support\n")
 	}
