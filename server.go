@@ -209,13 +209,14 @@ func (srv *Server) DockerInfo() *APIInfo {
 		imgcount = len(images)
 	}
 	return &APIInfo{
-		Containers:  len(srv.runtime.List()),
-		Images:      imgcount,
-		MemoryLimit: srv.runtime.capabilities.MemoryLimit,
-		SwapLimit:   srv.runtime.capabilities.SwapLimit,
-		Debug:       os.Getenv("DEBUG") != "",
-		NFd:         utils.GetTotalUsedFds(),
-		NGoroutines: runtime.NumGoroutine(),
+		Containers:         len(srv.runtime.List()),
+		Images:             imgcount,
+		MemoryLimit:        srv.runtime.capabilities.MemoryLimit,
+		SwapLimit:          srv.runtime.capabilities.SwapLimit,
+		Debug:              os.Getenv("DEBUG") != "",
+		NFd:                utils.GetTotalUsedFds(),
+		NGoroutines:        runtime.NumGoroutine(),
+		IndexServerAddress: auth.IndexServerAddress(),
 	}
 }
 
