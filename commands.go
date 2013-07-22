@@ -467,6 +467,7 @@ func (cli *DockerCli) CmdInfo(args ...string) error {
 		fmt.Fprintf(cli.out, "Fds: %d\n", out.NFd)
 		fmt.Fprintf(cli.out, "Goroutines: %d\n", out.NGoroutines)
 	}
+
 	if cli.authConfig != nil {
 		fmt.Fprintf(cli.out, "Username: %v\n", cli.authConfig.Username)
 	}
